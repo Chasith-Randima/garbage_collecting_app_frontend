@@ -242,14 +242,14 @@ const SingleIncident = () => {
             />
           )}
         </div>
-        <div className="mt-5 py-4 mr-10 border-2 border-primary-200 rounded-xl ">
+        <div className="mt-5 py-4 mr-10 border-2 border-gray-200 rounded-xl ">
           <h2 className="text-gray-400 text-2xl font-semibold  text-center">
             Incident Info
           </h2>
           <form className="block ">
             {/* <form className="block md:grid md:grid-cols-3"> */}
             {/* <div className="md:col-span-1 overflow-hidden"> */}
-            <div className="mx-5 border-2 border-primary-400 rounded-xl h-1/3">
+            <div className="mx-5 border-2 border-gray-400 rounded-xl h-1/3">
               <div className=" overflow-hidden h-400">
                 {images ? (
                   <img
@@ -288,7 +288,7 @@ const SingleIncident = () => {
                       <div
                         key={index}
                         onClick={() => setCoverImage(index)}
-                        className="border-2 border-primary-400 overflow-hidden rounded-b-lg cursor-pointer"
+                        className="border-2 border-gray-400 overflow-hidden rounded-b-lg cursor-pointer"
                       >
                         <img
                           src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/incidents/image/${images[index]}`}
@@ -300,14 +300,14 @@ const SingleIncident = () => {
               </div>
             </div>
             <div className="md:col-span-2 m-2">
-              <div className="border-2 border-primary-200 rounded-xl p-2 ">
+              <div className="border-2 border-gray-200 rounded-xl p-2 ">
                 <div className="">
                   <label class="text-gray-600 mb-2 block my-2">Title</label>
                   <h2
                     type="text"
                     // value={title}
                     // onChange={handleChange("title")}
-                    class="block w-full border bg-green-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-primary-500 placeholder-gray-400"
+                    class="block w-full border bg-green-200 border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-gray-500 placeholder-gray-400"
                     // placeholder="Enter the title"
                   >
                     {title}
@@ -320,7 +320,7 @@ const SingleIncident = () => {
                       type="text"
                       // value={title}
                       // onChange={handleChange("title")}
-                      class={`block w-full   bg-red-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-primary-500 placeholder-gray-400`}
+                      class={`block w-full   bg-red-200 border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-gray-500 placeholder-gray-400`}
                       // placeholder="Enter the title"
                     >
                       {flag}
@@ -331,7 +331,7 @@ const SingleIncident = () => {
                       type="text"
                       // value={title}
                       // onChange={handleChange("title")}
-                      class={`block w-full   bg-yellow-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-primary-500 placeholder-gray-400`}
+                      class={`block w-full   bg-yellow-200 border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-gray-500 placeholder-gray-400`}
                       // placeholder="Enter the title"
                     >
                       {flag}
@@ -342,7 +342,7 @@ const SingleIncident = () => {
                       type="text"
                       // value={title}
                       // onChange={handleChange("title")}
-                      class={`block w-full   bg-blue-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-primary-500 placeholder-gray-400`}
+                      class={`block w-full   bg-blue-200 border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-gray-500 placeholder-gray-400`}
                       // placeholder="Enter the title"
                     >
                       {flag}
@@ -353,7 +353,7 @@ const SingleIncident = () => {
                       type="text"
                       // value={title}
                       // onChange={handleChange("title")}
-                      class={`block w-full   bg-green-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-primary-500 placeholder-gray-400`}
+                      class={`block w-full   bg-green-200 border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0  focus:border-gray-500 placeholder-gray-400`}
                       // placeholder="Enter the title"
                     >
                       {flag}
@@ -367,7 +367,7 @@ const SingleIncident = () => {
                   type="text"
                   value={hospitals}
                   onChange={handleChange("description")}
-                  class="block w-full border border-primary-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                  class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray placeholder-gray-400"
                   placeholder="Enter your location address"
                 >
                   <option></option>
@@ -392,7 +392,7 @@ const SingleIncident = () => {
                     // type="text"
                     // value={city}
                     // onChange={handleChange("location")}
-                    class="block w-full border bg-primary-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                    class="block w-full border bg-primary-200 border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0 focus:border-gray placeholder-gray-400"
                     // placeholder="Enter your location"
                   >
                     {city}
@@ -405,9 +405,11 @@ const SingleIncident = () => {
                     // type="text"
                     // value={description}
                     // onChange={handleChange("description")}
-                    class="block w-full border border-primary-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                    class="block w-full bg-primary-200 border border-gray-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0 focus:border-gray placeholder-gray-400"
                     // placeholder="Enter a description"
-                  >{description}</p>
+                  >
+                    {description}
+                  </p>
                 </div>
                 {userRole == "captain" && (
                   <div className="my-2">
@@ -422,7 +424,7 @@ const SingleIncident = () => {
                           setValues({ ...values, flag: e.target.value })
                         }
                         // onChange={handleChange("flag")}
-                        class="block w-full border border-primary-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400 col-span-2"
+                        class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray placeholder-gray-400 col-span-2"
                         placeholder="Enter your location address"
                       >
                         <option></option>
@@ -512,7 +514,7 @@ const SingleIncident = () => {
             </div> */}
           </form>
         </div>
-        <div className="mt-5 py-4 mr-10 border-2 border-primary-200 rounded-xl ">
+        <div className="mt-5 py-4 mr-10 border-2 border-gray-200 rounded-xl ">
           {allData && <Mapp allData={allData} />}
         </div>
       </Layout>
