@@ -11,7 +11,7 @@ const ArticleCard = ({ doc }) => {
         {/* <img src="/images/articleCard.png" className="w-full" /> */}
         {doc && doc.images.length > 0 ? (
           <img
-            src={`http://127.0.0.1:3000/api/v1/articles/image/${doc.images[0]}`}
+            src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/articles/image/${doc.images[0]}`}
             className="w-full"
           />
         ) : (

@@ -105,7 +105,7 @@ const SingleUser = () => {
           <div className="cmd:ol-span-1 overflow-hidden">
             {images ? (
               <img
-                src={`http://127.0.0.1:3000/api/v1/users/image/${images[0]}`}
+                src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/users/image/${images[0]}`}
                 className="rounded my-5 w-4/5 m-auto"
               />
             ) : (

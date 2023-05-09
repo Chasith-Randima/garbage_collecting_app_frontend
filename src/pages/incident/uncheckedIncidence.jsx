@@ -228,7 +228,7 @@ const UncheckedIncidence = () => {
                     {console.log(item.images[0])}
                     {item && item.images ? (
                       <img
-                        src={`http://127.0.0.1:3000/api/v1/incidents/image/${item.images[0]}`}
+                        src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/incidents/image/${item.images[0]}`}
                         // className="mx-auto w-2/3 h-80"
                         className="col-span-1"
                         // className="md:rounded-full mx-auto"

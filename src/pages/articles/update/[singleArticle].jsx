@@ -167,7 +167,7 @@ const SingleArticle = () => {
             <div className="md:col-span-1 overflow-hidden">
               {images ? (
                 <img
-                  src={`http://127.0.0.1:3000/api/v1/articles/image/${images[0]}`}
+                  src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/articles/image/${images[0]}`}
                   className="md:rounded-full my-5 w-4/5 m-auto"
                 />
               ) : (

@@ -204,7 +204,7 @@ const SingleSpot = () => {
             <div className="md:col-span-1 overflow-hidden">
               {images ? (
                 <img
-                  src={`http://127.0.0.1:3000/api/v1/garbageSpots/image/${images[0]}`}
+                  src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/garbageSpots/image/${images[0]}`}
                   className="md:rounded-full my-5 w-4/5 m-auto"
                 />
               ) : (

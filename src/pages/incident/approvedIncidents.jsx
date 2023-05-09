@@ -223,7 +223,7 @@ const ApprovedIncidents = () => {
                   <div className="grid grid-cols-3 border-2 border-primary-200 rounded-xl mt-2 mb-2 p-2  mr-2">
                     {item.images ? (
                       <img
-                        src={`http://127.0.0.1:3000/api/v1/incidents/image/${item.images[0]}`}
+                        src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/incidents/image/${item.images[0]}`}
                         className="mx-auto w-full  rounded-xl"
                       />
                     ) : (

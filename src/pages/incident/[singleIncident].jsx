@@ -253,7 +253,7 @@ const SingleIncident = () => {
               <div className=" overflow-hidden h-400">
                 {images ? (
                   <img
-                    src={`http://127.0.0.1:3000/api/v1/incidents/image/${images[coverImage]}`}
+                    src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/incidents/image/${images[coverImage]}`}
                     className="mx-auto w-full h-80 rounded-xl"
                   />
                 ) : (

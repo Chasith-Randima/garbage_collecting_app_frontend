@@ -246,7 +246,7 @@ const UpdateOne = () => {
                 />
               ) : ( */}
               <img
-                src={`http://127.0.0.1:3000/api/v1/incidents/image/${images[0]}`}
+                src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/incidents/image/${images[0]}`}
               />
               {/* )} */}
 

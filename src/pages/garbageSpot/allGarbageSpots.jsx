@@ -149,7 +149,7 @@ const AllGarbageSpots = () => {
                     /> */}
                     {item && item.images ? (
                       <img
-                        src={`http://127.0.0.1:3000/api/v1/garbages/image/${item.images[0]}`}
+                        src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/garbages/image/${item.images[0]}`}
                         className="col-span-1"
                       />
                     ) : (
