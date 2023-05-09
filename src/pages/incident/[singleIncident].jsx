@@ -291,7 +291,7 @@ const SingleIncident = () => {
                         className="border-2 border-primary-400 overflow-hidden rounded-b-lg cursor-pointer"
                       >
                         <img
-                          src={`http://127.0.0.1:3000/api/v1/incidents/image/${images[index]}`}
+                          src={`${process.env.NEXT_PUBLIC_API_DEVELOPMENT}/incidents/image/${images[index]}`}
                           className="w-full h-[100px]"
                         />
                       </div>
@@ -388,24 +388,26 @@ const SingleIncident = () => {
 
                 <div className="my-2">
                   <label class="text-gray-600 mb-2 block">City</label>
-                  <input
-                    type="text"
-                    value={city}
+                  <h2
+                    // type="text"
+                    // value={city}
                     // onChange={handleChange("location")}
-                    class="block w-full border border-primary-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                    placeholder="Enter your location"
-                  />
+                    class="block w-full border bg-primary-200 border-primary-300 px-4 py-3 text-gray-600 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                    // placeholder="Enter your location"
+                  >
+                    {city}
+                  </h2>
                 </div>
                 <div className="my-2">
                   <label class="text-gray-600 mb-2 block">Description</label>
-                  <textarea
-                    rows={5}
-                    type="text"
-                    value={description}
+                  <p
+                    // rows={5}
+                    // type="text"
+                    // value={description}
                     // onChange={handleChange("description")}
                     class="block w-full border border-primary-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                    placeholder="Enter a description"
-                  />
+                    // placeholder="Enter a description"
+                  >{description}</p>
                 </div>
                 {userRole == "captain" && (
                   <div className="my-2">
