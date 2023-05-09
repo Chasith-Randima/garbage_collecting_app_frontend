@@ -1,18 +1,29 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "components/Layout";
+
+import { getCookie } from "actions/auth";
+
+import { allIncidents } from "actions/incident";
+import Incidents from "components/Incidents";
+
 import Message from "components/Message";
-import { allArticles } from "actions/article";
-import ArticleCard from "components/ArticleCard";
 
-const Index = () => {
+const AllIncidents = () => {
+  // const Index = ({ data, token, cookie }) => {
+  //   console.log(token, cookie);
   const [allData, setAllData] = useState();
-  //   console.log(allData);
-
+  const [show, setShow] = useState(false);
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
-  // Math.ceil(allData.totalCount / limit)
-  // const { search } = values;
+  //   const [totalPages, setTotalPages] = useState(
+  //     Math.ceil(allData.totalCount / limit)
+  //   );
+  console.log(getCookie("token_user"));
+  const [name, setName] = useState();
+  const [dateOfBirth, setDateOfBirth] = useState();
+  //   const [appointmentDate2, setAppointmentDate2] = useState();
+  const [hospitalName, setHospitalName] = useState();
 
   const [alert, setAlert] = useState({
     message: "",
@@ -24,11 +35,27 @@ const Index = () => {
   const resetAlert = () => {
     setAlert({ message: "", error: false, loading: false, success: false });
   };
+  const initialSet = () => {
+    setAllData(data);
+  };
+
+  // const [filters, setFilters] = useState({
+  //   name: undefined,
+  //   dateOfBirth: undefined,
+  //   appointmentDate2: undefined,
+  //   hospitalName: undefined,
+  // });
+
+  // const { name, dateOfBirth, appointmentDate2, hospitalName } = filters;
 
   const handleChange = (name) => (e) => {
     e.preventDefault();
-    setValues({ ...values, [name]: e.target.value });
+    setFilters({ ...filters, [name]: e.target.value });
   };
+
+  // useEffect(() => {
+  //   initialSet();
+  // }, [data]);
 
   // ---------------pagination--------------------------
   const nextPage = () => {
@@ -52,23 +79,66 @@ const Index = () => {
 
   // ---------------pagination--------------------------
 
-  const basicData = async () => {
-    setAlert({ ...alert, loading: true });
-    let name;
-    let city;
-    let data = {
-      limit,
-      page,
-      name,
-      city,
-    };
-    await allArticles(data)
-      .then((data) => {
-        if (data.status && data.status == "success") {
-          setAllData(data);
-          let totalCount = data.totalCount;
-          setTotalPages(Math.ceil(totalCount / limit));
+  useEffect(() => {
+    console.log("page changed...", page);
 
+    handleSubmit();
+    // console.log(allData);
+  }, [page]);
+
+  const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+    let params;
+    setAlert({ ...alert, loading: true });
+    if (JSON.parse(localStorage.getItem("user")).role == "user") {
+      params = {
+        limit,
+        page,
+        user: JSON.parse(localStorage.getItem("user"))._id,
+        //   name,
+        //   dateOfBirth,
+        //   appointmentDate2,
+        //   hospitalName,
+      };
+    } else {
+      params = {
+        limit,
+        page,
+
+        //   name,
+        //   dateOfBirth,
+        //   appointmentDate2,
+        //   hospitalName,
+      };
+    }
+    let token = getCookie("token_user");
+
+    // console.log(params, "submit clicked...");
+    await allIncidents(params)
+      .then((data) => {
+        console.log(data);
+        if (data.status && data.status == "success") {
+          if (data.results == 0) {
+            setAlert({
+              ...alert,
+              loading: false,
+              message: data.message,
+              error: false,
+              success: true,
+            });
+
+            window.setTimeout(() => {
+              resetAlert();
+            }, 1000);
+          } else {
+            setAllData(data);
+            console.log(data.totalCount);
+            let totalCount = data.totalCount;
+            setTotalPages(Math.ceil(totalCount / limit));
+            setShow(false);
+          }
           setAlert({
             ...alert,
             loading: false,
@@ -78,31 +148,37 @@ const Index = () => {
           });
 
           window.setTimeout(() => {
-            setAlert({ ...alert, success: false, message: "" });
-          }, 1500);
+            resetAlert();
+          }, 1000);
         }
+
         // return { data };
       })
       .catch((err) => {
         console.log(err);
+
         setAlert({
           ...alert,
           loading: false,
-          message: data.message,
+          message: err.message,
           error: true,
           success: false,
         });
       });
+    // await allAppointments(params)
+    //   .then((data) => {
+    //     console.log(data);
+    //     setAllData(data);
+    //     console.log(allData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
-
-  useEffect(() => {
-    basicData();
-  }, [page]);
 
   return (
     <>
       <Layout>
-        {/* <div className="mx-auto col-span-12"> */}
         <div className="flex justify-center">
           {alert.error && (
             <Message
@@ -126,13 +202,31 @@ const Index = () => {
             />
           )}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-3 mt-10 mr-5">
-          {/* {console.log(allData)} */}
-          {allData &&
-            allData.doc.map((article, index) => {
-              return <ArticleCard key={article._id} doc={article} />;
-            })}
+
+        <h2 className="text-gray-400 text-2xl mt-2 font-semibold ">
+          All Articles
+        </h2>
+        <div className="mt-2 mr-10 border-2 border-gray-200 rounded-xl">
+          <div className="grid grid-cols-4 md:grid-cols-6 bg-primary-400 p-4 rounded-xl text-white text-xl font-sb ">
+            <h2>Id</h2>
+            <h2 className="col-span-3">title</h2>
+            {/* <h2 className="hidden md:block">Email</h2>
+            <h2>Role</h2> */}
+            {/* <h2>hospitalName</h2> */}
+            {/* <h2>cancel</h2> */}
+            <h2 className="text-center">Update</h2>
+            <h2 className="text-center">Delete</h2>
+          </div>
+          <div className="">
+            {/* {console.log(allData)} */}
+            {allData &&
+              allData.doc.map((incident) => {
+                return <Incidents incident={incident} />;
+                // <Patients patient={patient} />
+              })}
+          </div>
         </div>
+
         {/* --------------------------pagination----------------------- */}
         <div
           aria-label="Page navigation example"
@@ -149,7 +243,7 @@ const Index = () => {
               </a>
             </li>
             {[...Array(totalPages)].map((val, index) => {
-              console.log(index);
+              // console.log(index);
               return (
                 // <li>
                 <li key={index}>
@@ -175,79 +269,10 @@ const Index = () => {
             </li>
           </ul>
         </div>
-        {/* </div> */}
         {/* --------------------------pagination----------------------- */}
       </Layout>
     </>
   );
 };
 
-export default Index;
-
-// ----------------------------------------------------------------- Previous Page ---------------------------
-
-// import Head from "next/head";
-// import Image from "next/image";
-// import Layout from "components/Layout";
-// // import { Inter } from 'next/font/google'
-// // import styles from '@/styles/Home.module.css'
-
-// // const inter = Inter({ subsets: ['latin'] })
-
-// export default function Home() {
-//   return (
-//     <>
-//       <Head>
-//         <title>Create Next App</title>
-//         <meta name="description" content="Generated by create next app" />
-//         <meta name="viewport" content="width=device-width, initial-scale=1" />
-//         <link rel="icon" href="/favicon.ico" />
-//       </Head>
-//       <Layout>
-//         <main className=" mt-2 mb-2 p-2 mr-10 border-2 border-primary-200 rounded-xl grid grid-cols-12 gap-2">
-//           <div className="col-span-6 border-r-2 border-primary-400">
-//             <div className="grid grid-cols-3 border-2 border-primary-200 rounded-xl mt-2 mb-2 p-2  mr-2">
-//               {/* <div className="w-full h-2/3 overflow-hidden"> */}
-//               <img src="/images/locationMain.png" className="col-span-1" />
-//               {/* </div> */}
-//               <div className="p-2 col-span-2">
-//                 <h2>Title</h2>
-//                 <h2>Location</h2>
-//               </div>
-//             </div>
-//             <div className="grid grid-cols-3 border-2 border-primary-200 rounded-xl mt-2 mb-2 p-2  mr-2">
-//               {/* <div className="w-full h-2/3 overflow-hidden"> */}
-//               <img src="/images/locationMain.png" className="col-span-1" />
-//               {/* </div> */}
-//               <div className="p-2 col-span-2">
-//                 <h2>Title</h2>
-//                 <h2>Location</h2>
-//               </div>
-//             </div>
-//             <div className="grid grid-cols-3 border-2 border-primary-200 rounded-xl mt-2 mb-2 p-2  mr-2">
-//               {/* <div className="w-full h-2/3 overflow-hidden"> */}
-//               <img src="/images/locationMain.png" className="col-span-1" />
-//               {/* </div> */}
-//               <div className="p-2 col-span-2">
-//                 <h2>Title</h2>
-//                 <h2>Location</h2>
-//               </div>
-//             </div>
-//             <div className="grid grid-cols-3 border-2 border-primary-200 rounded-xl mt-2 mb-2 p-2  mr-2">
-//               {/* <div className="w-full h-2/3 overflow-hidden"> */}
-//               <img src="/images/locationMain.png" className="col-span-1" />
-//               {/* </div> */}
-//               <div className="p-2 col-span-2">
-//                 <h2>Title</h2>
-//                 <h2>Location</h2>
-//               </div>
-//             </div>
-//           </div>
-//           <div className="col-span-6">
-//             <h2>Map</h2>
-//           </div>
-//         </main>
-//       </Layout>
-//     </>
-//   );
-// }
+export default AllIncidents;
