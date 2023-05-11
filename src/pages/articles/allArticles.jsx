@@ -129,16 +129,16 @@ const AllArticles = () => {
         <h2 className="text-gray-400 text-2xl mt-2 font-semibold ">
           All Articles
         </h2>
-        <div className="mt-2 mr-10 border-2 border-gray-200 rounded-xl">
-          <div className="grid grid-cols-4 md:grid-cols-6 bg-primary-400 p-4 rounded-xl text-white text-xl font-sb ">
-            <h2>Id</h2>
-            <h2 className="col-span-3">Title</h2>
+        <div className="mt-2 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl">
+          <div className="grid grid-cols-10 md:grid-cols-6 bg-primary-400 p-4 rounded-xl text-white text-xl font-sb ">
+            <h2 className="hidden md:block">Id</h2>
+            <h2 className="col-span-6 md:col-span-3">Title</h2>
             {/* <h2 className="hidden md:block">Email</h2>
             <h2>Role</h2> */}
             {/* <h2>hospitalName</h2> */}
             {/* <h2>cancel</h2> */}
-            <h2 className="text-center">Update</h2>
-            <h2 className="text-center">Delete</h2>
+            <h2 className="text-center col-span-2 md-col-span-1">Update</h2>
+            <h2 className="text-center col-span-2 md:col-span-1">Delete</h2>
           </div>
           <div className="">
             {/* {console.log(allData)} */}

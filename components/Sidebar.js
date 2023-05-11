@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import SidebarLink from "./SidebarLink";
 import { isMobile, isBrowser } from "react-device-detect";
+import { logOut } from "actions/auth";
 
 const Sidebar = ({ showSideBar }) => {
   const [patientId, setPatientId] = useState();
@@ -23,6 +24,22 @@ const Sidebar = ({ showSideBar }) => {
   }, [isMobile]);
   // console.log(router.asPath);
   // console.log(router.asPath == "/mainPage");
+
+  const handleLogout = async (func) => {
+    await func()
+      .then((data) => {
+        console.log(data);
+        if (router.asPath == "/") {
+          router.reload();
+        } else {
+          router.push("/");
+        }
+        // Router.replace(Router.asPath);
+      })
+      .catch((err) => {
+        console.log();
+      });
+  };
 
   const userSidebar = () => {
     return (
@@ -79,6 +96,22 @@ const Sidebar = ({ showSideBar }) => {
               className="my-1 ml-2 text-xl cursor-pointer"
             >
               Profile
+            </h2>
+          </div>
+        )}
+
+        {userId && (
+          <div
+            className={`  my-2 font-medium p-2 w-full  rounded-md  hover:bg-primary-300 hover:text-white transition-all text-black bg-gray-300
+            `}
+          >
+            {/* <h2 className="my-1 ml-2 text-xl">page 1</h2> */}
+            <h2
+              // href={`/profile/onePatient/${patientId}`}
+              onClick={() => handleLogout(logOut)}
+              className="my-1 ml-2 text-xl cursor-pointer"
+            >
+              LogOut
             </h2>
           </div>
         )}
@@ -263,6 +296,21 @@ const Sidebar = ({ showSideBar }) => {
             </h2>
           </div>
         )}
+        {userId && (
+          <div
+            className={`  my-2 font-medium p-2 w-full  rounded-md  hover:bg-primary-300 hover:text-white transition-all text-black bg-gray-300
+            `}
+          >
+            {/* <h2 className="my-1 ml-2 text-xl">page 1</h2> */}
+            <h2
+              // href={`/profile/onePatient/${patientId}`}
+              onClick={() => handleLogout(logOut)}
+              className="my-1 ml-2 text-xl cursor-pointer"
+            >
+              LogOut
+            </h2>
+          </div>
+        )}
       </div>
     );
   };
@@ -296,6 +344,21 @@ const Sidebar = ({ showSideBar }) => {
           link={"/incident/uncheckedIncidence"}
           title={"Unchecked Incidence"}
         /> */}
+        {userId && (
+          <div
+            className={`  my-2 font-medium p-2 w-full  rounded-md  hover:bg-primary-300 hover:text-white transition-all text-black bg-gray-300
+            `}
+          >
+            {/* <h2 className="my-1 ml-2 text-xl">page 1</h2> */}
+            <h2
+              // href={`/profile/onePatient/${patientId}`}
+              onClick={() => handleLogout(logOut)}
+              className="my-1 ml-2 text-xl cursor-pointer"
+            >
+              LogOut
+            </h2>
+          </div>
+        )}
       </div>
     );
   };
@@ -318,6 +381,21 @@ const Sidebar = ({ showSideBar }) => {
         /> */}
         {userId && (
           <SidebarLink link={`/profile/update/${userId}`} title={"Profile"} />
+        )}
+        {userId && (
+          <div
+            className={`  my-2 font-medium p-2 w-full  rounded-md  hover:bg-primary-300 hover:text-white transition-all text-black bg-gray-300
+            `}
+          >
+            {/* <h2 className="my-1 ml-2 text-xl">page 1</h2> */}
+            <h2
+              // href={`/profile/onePatient/${patientId}`}
+              onClick={() => handleLogout(logOut)}
+              className="my-1 ml-2 text-xl cursor-pointer"
+            >
+              LogOut
+            </h2>
+          </div>
         )}
       </div>
     );

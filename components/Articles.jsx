@@ -36,15 +36,18 @@ const Articles = ({ article }) => {
   };
   return (
     <>
-      <div className="grid grid-cols-4 md:grid-cols-6 p-4 border-b-2 border-gray-200 hover:bg-gray-300 transition-all rounded-xl">
+      <div className="grid grid-cols-5 md:grid-cols-6 p-4 border-b-2 border-gray-200 hover:bg-gray-300 transition-all rounded-xl">
         <h3 className="hidden md:block">
           {article._id.substr(article._id.length / 2, article._id.length)}
         </h3>
-        <h3 className="md:hidden">
+        {/* <h3 className="md:hidden">
           {article._id.substr(article._id.length - 5, article._id.length)}
-        </h3>
+        </h3> */}
 
-        <Link href={`/articles/one/${article._id}`} className="col-span-3">
+        <Link
+          href={`/articles/one/${article._id}`}
+          className="col-span-3 md:col-span-3"
+        >
           {/* <Link href={`/user/one/${article._id}`} className="col-span-2"> */}
           {article.title}
         </Link>

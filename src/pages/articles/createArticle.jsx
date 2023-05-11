@@ -123,7 +123,7 @@ const CreateArticle = () => {
         <h2 className="text-gray-400 text-2xl mt-2 font-semibold ">
           Create Article
         </h2>
-        <div className="mt-2 mr-10 border-2 border-gray-200 rounded-xl">
+        <div className="mt-2 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl">
           <form className="block md:grid md:grid-cols-3">
             <div className="md:col-span-1 overflow-hidden">
               {images ? (

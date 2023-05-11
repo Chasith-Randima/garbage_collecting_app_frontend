@@ -121,7 +121,7 @@ const CreateOne = () => {
             />
           )}
         </div>
-        <div className="mt-5 mr-10 border-2 border-gray-200 rounded-xl">
+        <div className="mt-5 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl">
           <form className="block md:grid md:grid-cols-3">
             <div className="md:col-span-3 m-2">
               <h2 className="text-gray-400 text-xl font-semibold my-1 text-center">

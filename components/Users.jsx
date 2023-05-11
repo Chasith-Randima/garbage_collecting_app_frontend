@@ -38,9 +38,9 @@ const Users = ({ user }) => {
         <h3 className="hidden md:block">
           {user._id.substr(user._id.length / 2, user._id.length)}
         </h3>
-        <h3 className="md:hidden">
+        {/* <h3 className="md:hidden">
           {user._id.substr(user._id.length - 5, user._id.length)}
-        </h3>
+        </h3> */}
 
         <Link href={`/profile/${user._id}`} className="">
           {/* <Link href={`/user/one/${user._id}`} className="col-span-2"> */}

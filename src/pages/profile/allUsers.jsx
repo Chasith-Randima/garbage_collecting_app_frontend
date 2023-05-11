@@ -184,9 +184,9 @@ const AllUsers = () => {
           All Users
         </h2>
 
-        <div className="mt-2 mr-10 border-2 border-gray-200 rounded-xl">
+        <div className="mt-2 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl">
           <div className="grid grid-cols-4 md:grid-cols-6 bg-primary-400 p-4 rounded-xl text-white text-xl font-sb ">
-            <h2>Id</h2>
+            <h2 className="hidden md:block">Id</h2>
             <h2 className="">Name</h2>
             <h2 className="hidden md:block">Email</h2>
             <h2>Role</h2>

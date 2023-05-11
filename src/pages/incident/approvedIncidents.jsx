@@ -215,7 +215,7 @@ const ApprovedIncidents = () => {
         <h2 className="text-gray-400 text-2xl mt-2 font-semibold ">
           Approved Incidents
         </h2>
-        <div className=" mt-2 mb-2 p-2 mr-10 border-2 border-primary-200 rounded-xl grid grid-cols-12 gap-2">
+        <div className=" mt-2 mb-2 p-2 mr-4 md:mr-10 border-2 border-primary-200 block rounded-xl md:grid md:grid-cols-12 gap-2">
           <div className="col-span-4 border-r-2 border-primary-400">
             {allData &&
               allData.doc.map((item) => {

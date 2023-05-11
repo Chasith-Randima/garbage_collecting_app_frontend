@@ -242,7 +242,7 @@ const SingleIncident = () => {
             />
           )}
         </div>
-        <div className="mt-5 py-4 mr-10 border-2 border-gray-200 rounded-xl ">
+        <div className="mt-5 py-4 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl ">
           <h2 className="text-gray-400 text-2xl font-semibold  text-center">
             Incident Info
           </h2>
@@ -514,7 +514,7 @@ const SingleIncident = () => {
             </div> */}
           </form>
         </div>
-        <div className="mt-5 py-4 mr-10 border-2 border-gray-200 rounded-xl ">
+        <div className="mt-5 py-4 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl ">
           {allData && <Mapp allData={allData} />}
         </div>
       </Layout>

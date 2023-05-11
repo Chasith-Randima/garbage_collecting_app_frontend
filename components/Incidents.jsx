@@ -40,15 +40,18 @@ const Incidents = ({ incident }) => {
   };
   return (
     <>
-      <div className="grid grid-cols-4 gap-2 md:grid-cols-6 p-4 border-b-2 border-gray-200 hover:bg-gray-300 transition-all rounded-xl">
+      <div className="grid grid-cols-5 gap-2 md:grid-cols-6 p-4 border-b-2 border-gray-200 hover:bg-gray-300 transition-all rounded-xl">
         <h3 className="hidden md:block col-span-1">
           {incident._id.substr(incident._id.length / 2, incident._id.length)}
         </h3>
-        <h3 className="md:hidden">
+        {/* <h3 className="md:hidden">
           {incident._id.substr(incident._id.length - 5, incident._id.length)}
-        </h3>
+        </h3> */}
 
-        <Link href={`/incident/${incident._id}`} className="col-span-3">
+        <Link
+          href={`/incident/${incident._id}`}
+          className="col-span-3 md:col-span-3"
+        >
           {/* <Link href={`/user/one/${incident._id}`} className="col-span-2"> */}
           {incident.title}
         </Link>

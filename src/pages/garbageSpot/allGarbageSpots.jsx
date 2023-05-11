@@ -8,6 +8,8 @@ import { getCookie } from "actions/auth";
 const AllGarbageSpots = () => {
   const router = useRouter();
 
+  const [userRole, setUserRole] = useState();
+
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
@@ -87,6 +89,9 @@ const AllGarbageSpots = () => {
 
   useEffect(() => {
     basicData();
+    if (localStorage.getItem("user")) {
+      setUserRole(JSON.parse(localStorage.getItem("user")).role);
+    }
   }, [page]);
 
   const basicData = async () => {
@@ -137,7 +142,7 @@ const AllGarbageSpots = () => {
         <h2 className="text-gray-400 text-2xl mt-2 font-semibold ">
           All Garbage Spot
         </h2>
-        <main className=" mt-2 mb-2 p-2 mr-10 border-2 border-primary-200 rounded-xl grid grid-cols-12 gap-2">
+        <main className=" mt-2 mb-2 p-2 mr-4 md:mr-10 border-2 border-primary-200 rounded-xl block md:grid md:grid-cols-12 gap-2">
           <div className="col-span-5 border-r-2 border-primary-400">
             {data &&
               data.doc.map((item) => {
@@ -165,22 +170,24 @@ const AllGarbageSpots = () => {
                         <span>Location : </span>
                         {item.location}
                       </h2>
-                      <div className="col-span-2 grid grid-cols-2 gap-2 ">
-                        <h2
-                          onClick={() =>
-                            router.push(`/garbageSpot/update/${item._id}`)
-                          }
-                          className="p-1 bg-green-400 text-white hover:bg-green-600 transition-all rounded-xl text-center cursor-pointer"
-                        >
-                          Update
-                        </h2>
-                        <h2
-                          onClick={() => handleDelete(item._id)}
-                          className="p-1 bg-red-400 text-white hover:bg-red-600 transition-all rounded-xl text-center cursor-pointer"
-                        >
-                          Delete
-                        </h2>
-                      </div>
+                      {userRole && userRole == "admin" && (
+                        <div className="col-span-2 grid grid-cols-2 gap-2 ">
+                          <h2
+                            onClick={() =>
+                              router.push(`/garbageSpot/update/${item._id}`)
+                            }
+                            className="p-1 bg-green-400 text-white hover:bg-green-600 transition-all rounded-xl text-center cursor-pointer"
+                          >
+                            Update
+                          </h2>
+                          <h2
+                            onClick={() => handleDelete(item._id)}
+                            className="p-1 bg-red-400 text-white hover:bg-red-600 transition-all rounded-xl text-center cursor-pointer"
+                          >
+                            Delete
+                          </h2>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
