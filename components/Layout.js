@@ -23,6 +23,8 @@ const Layout = ({ children }) => {
   const [always, setAlways] = useState(true);
   const [showSideBar, setShowSideBar] = useState(true);
   const [noUser, setNoUser] = useState(true);
+
+  console.log(showSideBar);
   useEffect(() => {
     if (isBrowser) {
       setAlways(true);

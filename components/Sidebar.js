@@ -3,12 +3,14 @@ import Link from "next/link";
 // import { isAuth } from "../actions/auth";
 import { useRouter } from "next/router";
 import SidebarLink from "./SidebarLink";
+import { isMobile, isBrowser } from "react-device-detect";
 
 const Sidebar = ({ showSideBar }) => {
   const [patientId, setPatientId] = useState();
   const [doctorId, setDoctorId] = useState();
   const [userId, setUserId] = useState();
   const [userData, setUserData] = useState();
+  const [logInShow, setLogInShow] = useState();
 
   const router = useRouter();
   useEffect(() => {
@@ -17,7 +19,8 @@ const Sidebar = ({ showSideBar }) => {
       setUserData(JSON.parse(localStorage.getItem("user")));
     }
     console.log(patientId, userId, doctorId);
-  }, []);
+    setLogInShow(isMobile);
+  }, [isMobile]);
   // console.log(router.asPath);
   // console.log(router.asPath == "/mainPage");
 
@@ -319,6 +322,19 @@ const Sidebar = ({ showSideBar }) => {
       </div>
     );
   };
+
+  const visitorSidebar = () => {
+    return (
+      <>
+        <SidebarLink link={"/"} title={"Articles"} />
+        <SidebarLink
+          link={"/garbageSpot/allGarbageSpots"}
+          title={"All Garbage Spots"}
+        />
+        {logInShow && <SidebarLink link={"/auth/LogIn"} title={"LogIn"} />}
+      </>
+    );
+  };
   return (
     <>
       {/* <div className={`${showSideBar ? "" : "hidden"}`}> */}
@@ -341,6 +357,7 @@ const Sidebar = ({ showSideBar }) => {
       {userId && userData.role == "admin" && adminSidebar()}
       {userId && userData.role == "captain" && captainSidebar()}
       {userId && userData.role == "staff" && staffSidebar()}
+      {userId == undefined && visitorSidebar()}
 
       {/* </div> */}
       {/* </div> */}
