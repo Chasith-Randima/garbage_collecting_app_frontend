@@ -36,7 +36,7 @@ const CreateIncident = () => {
       method: "GET",
     })
       .then((response) => {
-        // console.log(values);
+
         return response.data;
       })
       .catch((err) => {

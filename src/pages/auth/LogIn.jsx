@@ -191,13 +191,16 @@ const LogIn = () => {
             </div>
 
             <div className="md:w-2/5 bg-primary-500 text-white rounded-tr-2xl rounded-br-2xl md:py-36 md:px-16 pb-4 ">
-              <img
+              {/* <img
                 src="/img/opd-logo.png"
                 alt="logo"
                 height={250}
                 width={250}
                 className="item-center item"
-              />
+              /> */}
+              <h2 className="item-center item font-bold text-2xl text-white">
+                GreenTF
+              </h2>
               <div className="border-2 w-10 border-white inline-block mb-2"></div>
               <p className="mb-2 text-base">
                 <b>Caring for you</b> beyond borders

@@ -204,7 +204,7 @@ const AllIncidents = () => {
         </div>
 
         <h2 className="text-gray-400 text-2xl mt-2 font-semibold ">
-          All Articles
+          All Incidents
         </h2>
         <div className="mt-2 mr-4 md:mr-10 border-2 border-gray-200 rounded-xl">
           <div className="grid   grid-cols-10 md:grid-cols-6 bg-primary-400 p-4 rounded-xl text-white text-xl font-sb ">

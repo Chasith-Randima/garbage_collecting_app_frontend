@@ -114,26 +114,18 @@ const Mapp = ({ allData }) => {
       </>
     );
   };
-
   const handleClick = (e) => {
     const [longitude, latitude] = e.lngLat;
-
     setNewPlace({
       lat: latitude,
       long: longitude,
     });
   };
   return (
-    // <div className="w-full h-full ">
     <ReactMapGl
-      // {...viewPort}
       initialViewState={viewPort}
-      //   viewState={}
-      //   viewState={viewPort}
       mapboxAccessToken={token}
       style={{ width: "100%", height: 600 }}
-      //   width="100%"
-      //   height="100%"
       mapStyle="mapbox://styles/mapbox/streets-v11"
       transitionDuration="200"
     >
